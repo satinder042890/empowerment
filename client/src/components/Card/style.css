@@ -1,0 +1,14 @@
+#mainDisplaySection{
+    border:2px solid green;
+    padding:1%;
+    width:100%;
+    margin-top: 1%;
+}
+iframe{
+    height:200px;
+    width:100%;
+    border:5px solid black;
+}
+.title{
+    color:black;
+}
