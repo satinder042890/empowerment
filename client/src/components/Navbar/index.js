@@ -13,17 +13,17 @@ class Navbar extends Component{
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
     <li className="nav-item">
-    <Link to="/entertainment" className={window.location.pathname === "/entertainment"}><a className="navbar-brand" href="#">Entertainment</a>
-    </Link></li>
+    <a className="navbar-brand" href="/entertainment">Entertainment</a>
+    </li>
     <li className="nav-item">
-    <Link to="/scheduler" className={window.location.pathname === "/scheduler"}><a className="navbar-brand" href="#">Scheduler</a>
-      </Link></li>
+ <a className="navbar-brand" href="/scheduler">Scheduler</a>
+      </li>
       <li className="nav-item">
-      <Link to="/safety" className={window.location.pathname === "/safety"}><a className="navbar-brand" href="#">Safety Tips</a>
-      </Link></li>
+  <a className="navbar-brand" href="/safety">Safety Tips</a>
+    </li>
       <li className="nav-item">
-      <Link to="/tracker" className={window.location.pathname === "/tracker"}><a className="navbar-brand" href="#">Tracker</a>
-      </Link></li>
+  <a className="navbar-brand" href="/tracker">Tracker</a>
+      </li>
       <li className="nav-item dropdown">
       <DropDown><a className="navbar-brand dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Videos</a></DropDown>
      </li>
