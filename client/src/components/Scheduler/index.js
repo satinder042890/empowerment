@@ -1,8 +1,8 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { ApptList, ListItem } from "./components/ApptList";
-import { Input, FormBtn } from "./components/ApptForm";
+import { ApptList, ListItem } from "../ApptList";
+import { Input, FormBtn } from "../ApptForm";
 
 export default class Scheduler extends React.Component {
   constructor(props) {
@@ -12,15 +12,22 @@ export default class Scheduler extends React.Component {
       selectedDay: null,
     };
   }
+  //add componentDidMount to call "load future appointments"
+
+  //create function to load future appts
+  
+  //add function to delete appts
   handleDayClick(day, { selected }) {
     this.setState({
       selectedDay: selected ? undefined : day,
     });
   }
+
+  //add a handleFormSubmit for new appointments
   render() {
     return (
-        <h1>Scheduler</h1>
       <div className="container">
+        <h1>Scheduler</h1>
         <div className="row" style={{display: 'flex', justifyContent: 'center' }}>
             <DayPicker
               selectedDays={this.state.selectedDay}
