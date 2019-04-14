@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import "./style.css";
 
-import Videos from "../Videos";
+
 class DropDown extends Component {
   state={
     category:"",
@@ -21,8 +21,6 @@ class DropDown extends Component {
     );
     
     return (
-      // <Link to="/videos/"className={window.location.pat hname === "/videos"}>
-      // <Link to={"/videos/" + "this.state.category"}>Hello</Link>
       <div className="dropdown">
         {this.props.children}
         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">

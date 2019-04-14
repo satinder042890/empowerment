@@ -3,7 +3,7 @@ const key = "AIzaSyDa1T6i-oZRysekxLrAGqbpH5kuJvYAkdk";
 const URL = "https://www.googleapis.com/youtube/v3/";
 
 
-export default axios.create({
+const Videos= axios.create({
   baseURL:URL,
   params:{
     part: 'snippet',
@@ -36,3 +36,6 @@ export default axios.create({
 //     return axios.post("/api/scheduler", apptData);
 //   }
 // };
+
+  export default Videos;
+
