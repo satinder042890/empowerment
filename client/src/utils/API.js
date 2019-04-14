@@ -11,18 +11,28 @@ export default axios.create({
       maxResults: 10
   }
 })
-//  {
-//   searchVideos: function (query) {
-//     var options = {
-//       part: 'snippet',
-//       key: key,
-//       maxResults: 10,
-//       q: query
-//     };
-//     axios.get(URL, options, function (data) {
-//       console.log(data);
-//       console.log("hello");
-//       return (data);
-//     });
+//add getAppts
+//add getAppt
+//add createAppt
+//add deleteAppt
+
+// import axios from "axios";
+
+// export default {
+  // Gets all books
+  // getAppts: function() {
+  //   return axios.get("/api/scheduler");
+  // },
+  // Gets the book with the given id
+  // getAppt: function(id) {
+  //   return axios.get("/api/scheduler/" + id);
+  // },
+  // Deletes the book with the given id
+  // deleteAppt: function(id) {
+  //   return axios.delete("/api/scheduler/" + id);
+  // },
+  // Saves a book to the database
+//   saveAppt: function(bookData) {
+//     return axios.post("/api/scheduler", apptData);
 //   }
 // };

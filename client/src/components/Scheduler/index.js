@@ -3,6 +3,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { ApptList, ListItem } from "../ApptList";
 import { Input, FormBtn } from "../ApptForm";
+import API from "../utils/API";
 
 export default class Scheduler extends React.Component {
   constructor(props) {
@@ -13,9 +14,17 @@ export default class Scheduler extends React.Component {
     };
   }
   //add componentDidMount to call "load future appointments"
-
-  //create function to load future appts
-  
+  // componentDidMount() {
+  //   this.loadAppts();
+  // }
+  //function to load future appts
+  // loadAppts = () => {
+  //   API.getAppts()
+  //     .then(res => 
+  //       this.setState({})
+  //       )
+  //       .catch(err => console.log(err));
+  // };
   //add function to delete appts
   handleDayClick(day, { selected }) {
     this.setState({
