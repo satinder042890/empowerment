@@ -3,5 +3,8 @@ const Routes = {
     saveUser: function(data) {
       return axios.post("/api/user", data);
     },
+    logIn: function(data){
+      return axios.post("/api/user/", data);
+    }
   }
   export default Routes;
