@@ -8,6 +8,7 @@ import SafetyTips from "./components/SafetyTips";
 // import Scheduler from "./components/Scheduler";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Home from "./components/Home";
 class App extends Component {
 
   render(){
@@ -23,6 +24,7 @@ class App extends Component {
         <Route exact path="/safety" component={SafetyTips} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/home" component={Home} />
       </Switch>
       </div>
        

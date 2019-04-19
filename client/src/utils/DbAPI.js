@@ -4,7 +4,7 @@ const Routes = {
       return axios.post("/api/user", data);
     },
     logIn: function(data){
-      return axios.post("/api/user/", data);
+      return axios.post("/api/login",data);
     }
   }
   export default Routes;

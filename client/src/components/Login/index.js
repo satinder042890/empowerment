@@ -20,10 +20,12 @@ class Login extends Component{
         API.logIn({
             username: this.state.Username,
             password: this.state.Password
-        }).then(res => console.log(res))
+        }).then(res => {
+            console.log(res)
+        })
         .catch(err => console.log(err));
         this.setState({ Username: "", Password: ""});
-        // window.location = '/tracker';
+        
     }
     render(){
     return(
