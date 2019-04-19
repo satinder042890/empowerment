@@ -17,7 +17,7 @@ class DropDown extends Component {
   render() {
    
     let optionItems = this.state.videoList.map((videos) =>
-      <a className="dropdown-item" href={"/videos/" + this.state.category } name = {videos} onClick={this.handleChange}>{videos}</a>
+      <a className="dropdown-item" href={"/videos/" + this.state.category+"/"+this.props.id } name = {videos} onClick={this.handleChange}>{videos}</a>
     );
     
     return (

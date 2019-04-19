@@ -3,6 +3,7 @@ import Button from "../Form/Button";
 import Input from "../Form/Input";
 import Formgroup from "../Form/Formgroup";
 import API from "../../utils/DbAPI";
+import Navbar from "../Navbar";
 class Signup extends Component {
     state = {
         Username: "",
@@ -39,12 +40,15 @@ class Signup extends Component {
     render() {
 
         return (
+            <div>
+                <Navbar id="1"/>
             <Formgroup>
                 <Input name="Username" labelname="Enter Username" value={this.state.Username} onChange={this.handleChange}></Input><br></br>
                 <Input name="Password" labelname="Enter Password" value={this.state.Password} onChange={this.handleChange}></Input><br></br>
                 <Input name="confirmPassword" labelname="Confirm Password" value={this.state.confirmPassword} onChange={this.handleChange}></Input><br></br>
                 <Button onClick={this.handleSubmit}>Sign Up</Button>
             </Formgroup>
+            </div>
         )
     }
 

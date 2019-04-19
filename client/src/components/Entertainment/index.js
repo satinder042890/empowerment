@@ -1,8 +1,15 @@
-import React from "react";
-const Entertainment = () => {
+import React,{Component} from "react";
+import Navbar from "../Navbar";
+class Entertainment extends Component {
+    render(){
     return (
-        <h1>Entertainment Page</h1>
+        <div>
+            <Navbar id={this.props.match.params.id}/>
+<h1>Entertainment Page</h1>
+        </div>
+        
     )
+    }
 }
 
 export default Entertainment;

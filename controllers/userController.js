@@ -4,7 +4,11 @@ module.exports={
     findUser :function(req,res){
         // console.log(JSON.parse(JSON.stringify(req.user)));
         console.log("hiiiiiiiiiiiiii");
-       console.log(res)
+       console.log(req.user)
+       if(!res){
+            res.redirect("/signup")
+       }
+        res.json(JSON.parse(JSON.stringify(req.user)) );
         // res.send(req.user);
         // res.json("/tracker");
     },

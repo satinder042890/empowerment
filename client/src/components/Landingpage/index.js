@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import Navbar from "../Navbar";
-class Home extends Component {
+class Landingpage extends Component {
     state={
         id:1
       }
@@ -16,11 +16,10 @@ class Home extends Component {
     render(){
         return (
       
-            <Navbar id={this.props.match.params.id}/>
+            <Navbar id="1"/>
         
     )
     }  
     
 }
-
-export default Home;
+export default Landingpage;
