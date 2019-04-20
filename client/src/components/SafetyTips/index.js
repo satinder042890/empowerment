@@ -1,8 +1,120 @@
-import React from "react";
-const SafetyTips = () => {
+import React, { Component } from "react";
+import HealthAPI from "../../utils/HealthApi";
+import getDoctors from "../../utils/HealthApi";
+import DoctorCard from "./HealthCard/healthcard";
+class Health extends Component {
+  state= {
+    firstname: "",
+    lastname: "", 
+    specialty: "",
+    zipcode: "",
+    doctors : [],
+  };
+
+
+
+  render() {
+
+
     return (
-        <h1>SafetyTips Page</h1>
-    )
+        
+      <div>
+          <input type="text" placeholder="First Name" value ={this.state.firstname} onChange= {x => this.updateFirstName(x)} />
+
+          <br></br>
+          
+          <input type="text" placeholder="Last Name" value={this.state.lastname} onChange= {a => this.updateLastName(a)} />
+
+          <br></br>
+          
+          <input type="text" placeholder="Specialty" value={this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)} />
+        
+          
+          <br></br>
+          
+          <input type="text" placeholder="State or Zipcode" value={this.state.zipcode} onChange= {c => this.updateZipcode(c)} />
+
+          <br></br>
+        
+        <button onClick={this.handleclick}>Search</button>
+
+        {this.state.doctors.length > 0 ?  this.state.doctors.map(doctor => <DoctorCard 
+          fname={doctor.profile.first_name}
+          lname={doctor.profile.last_name}
+          pic={doctor.profile.image_url}
+          spec={doctor.specialties[0].name}
+          business={doctor.practices.length == 0 ?
+            "NONE" : doctor.practices[0].name}
+          address={doctor.practices.length == 0 ? 
+            null :doctor.practices[0].visit_address.street + ", " +
+             doctor.practices[0].visit_address.city + ", " + 
+             doctor.practices[0].visit_address.state + " " + 
+             doctor.practices[0].visit_address.zip}
+          number={doctor.practices.length == 0 ? 
+            "NONE" : doctor.practices[0].phones[0].number}
+
+        />) : null}
+        {/* <table> */}
+        
+          {/* {this.state.doctors.map(doctor => {
+            return <div key={doctor.fname}>{doctor.profile.first_name}</div>
+           } )}
+           
+           {this.state.doctors.map(doctor => {
+            return <div key={doctor.lname}>{doctor.profile.last_name}</div>
+           } )}
+
+          {this.state.doctors.map(doctor => {
+            return <img key={doctor.pic} src={doctor.profile.image_url}></img>
+           } )}
+
+          {this.state.doctors.map(doctor => {
+            return <div key={doctor.spec}>{doctor.specialties[0].name}</div>
+           } )}
+
+          {this.state.doctors.map(doctor => {
+             return <div key={doctor.business}>{doctor.practices.length == 0 ? 
+                "NONE" : doctor.practices[0].name}
+                </div>
+            } ) }
+
+          {this.state.doctors.map(doctor => {
+             return <div key={doctor.address}>{doctor.practices.length == 0 ? 
+                null :doctor.practices[0].visit_address.street +", " + doctor.practices[0].visit_address.city + ", " + doctor.practices[0].visit_address.state + " " + doctor.practices[0].visit_address.zip}
+                </div>
+            } ) }
+
+          {this.state.doctors.map(doctor => {
+             return <div key={doctor.number}>{doctor.practices.length == 0 ? 
+                "NONE" : doctor.practices[0].phones[0].number}
+                </div>
+            } ) } */}
+
+          
+        {/* </table> */}
+
+
+      </div>
+     
+   )
+  }
+
+  updateFirstName = (x) => this.setState({firstname:x.target.value})
+  updateLastName = (a) => this.setState({lastname:a.target.value})
+  updateSpecialty = (b) => this.setState({specialty:b.target.value})
+  updateZipcode = (c) => this.setState({zipcode:c.target.value})
+
+  handleclick = async (e) => {
+    //provide dropdown for specialty and make it lowercase
+    const res = await getDoctors(this.state.specialty, this.state.zipcode, this.state.firstname, this.state.lastname);
+    //HealthAPI.get("/")
+    
+  this.setState({doctors:res.data.data});
+  console.log(this.state.doctors);
+
+    
+  }
+
 }
 
-export default SafetyTips;
+export default Health;

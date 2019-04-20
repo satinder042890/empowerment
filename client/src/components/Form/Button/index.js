@@ -4,4 +4,4 @@ Button=(props)=>{
         <button type="button" class="btn btn-success">{props.name}</button>
     )
 }
-export default Button;
+export default Button; 
