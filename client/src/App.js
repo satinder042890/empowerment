@@ -2,7 +2,7 @@ import React ,{Component} from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Videos from "./components/Videos";
 import Tracker from "./components/Tracker";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Entertainment from "./components/Entertainment";
 import SafetyTips from "./components/SafetyTips";
 import Scheduler from "./components/Scheduler";
@@ -17,7 +17,7 @@ class App extends Component {
   return (
     <Router>
       <div>
-      {/* <Navbar/>  */}
+      <Navbar/> 
       <Switch>
         <Route exact path="/" component={Landingpage} />
         <Route  path="/videos/:category/:id" component={Videos} />
