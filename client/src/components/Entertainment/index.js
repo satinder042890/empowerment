@@ -1,14 +1,27 @@
-import React,{Component} from "react";
-import Navbar from "../Navbar";
+import React, {Component} from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Header from "./Header/Header.js";
+import Musix from "./Musix.js";
+import Lyrics from './Lyrics/Lyrics.js';
+import { Provider } from './Context.js';
+
+
 class Entertainment extends Component {
-    render(){
-    return (
-        <div>
-            <Navbar id={this.props.match.params.id}/>
-<h1>Entertainment Page</h1>
-        </div>
-        
-    )
+    render() {
+        return (
+            <Provider>
+                <Router>
+                    <React.Fragment>
+                        <div className="container">
+                            <Switch>
+                                <Route path="/entertainment" component={Musix} />
+                                <Route path="/lyrics/track/:id" component={Lyrics} />
+                            </Switch>
+                        </div>
+                    </React.Fragment>
+                </Router>
+            </Provider>
+        )
     }
 }
 
