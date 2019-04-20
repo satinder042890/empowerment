@@ -11,33 +11,55 @@ class Lyrics extends Component {
     track: {},
     lyrics: {}
   };
-
   componentDidMount() {
-    fetch(
+    axios
+      .get(
         `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${
           this.props.match.params.id
-        }&apikey=${key}`, {
-          method: "GET"
-        }
+        }&apikey=${key}`
       )
       .then(res => {
         this.setState({ lyrics: res.data.message.body.lyrics });
-        console.log("lyrics" + { lyrics: res.data.message.body.lyrics });
 
-        return fetch(
+        return axios.get(
           `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${
             this.props.match.params.id
-          }&apikey=${key}`, {
-            method: "GET"
-          }
+          }&apikey=${key}`
         );
       })
       .then(res => {
         this.setState({ track: res.data.message.body.track });
-        console.log("track" + {track: res.data.message.body.track });
       })
       .catch(err => console.log(err));
   }
+
+  // componentDidMount() {
+  //   URL = `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${
+  //     this.props.match.params.id
+  //   }&apikey=${key}`;
+
+  //   fetch(URL,{
+  //         method: "GET"
+  //       }
+  //     )
+  //     .then(res => {
+  //       this.setState({ lyrics: res.data.message.body.lyrics });
+  //       console.log("lyrics" + { lyrics: res.data.message.body.lyrics });
+
+  //      fetch(
+  //         `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${
+  //           this.props.match.params.id
+  //         }&apikey=${key}`, {
+  //           method: "GET"
+  //         }
+  //       );
+  //     })
+  //     .then(res => {
+  //       this.setState({ track: res.data.message.body.track });
+  //       console.log("track" + {track: res.data.message.body.track });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     const { track, lyrics } = this.state;
