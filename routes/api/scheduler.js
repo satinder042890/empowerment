@@ -1,15 +1,17 @@
-const router = require("express").Router();
+const apptRouter = require("express").Router();
 const apptsController = require("../../controllers/apptsController");
 
 // Matches with "/api/books"
-router.route("/scheduler")
+apptRouter.route("/api/scheduler")
   .get(apptsController.findAll)
   .post(apptsController.create);
 
 // Matches with "/api/books/:id"
-router
-  .route("/scheduler/:id")
+apptRouter
+  .route("/api/scheduler/:id")
   .get(apptsController.findById)
   .delete(apptsController.remove);
 
-module.exports = router;
+module.exports = apptRouter;
+
+//request all appts

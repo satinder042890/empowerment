@@ -1,7 +1,7 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { ApptList, ListItem } from "../ApptList";
+import { ApptType, CheckBox } from "../ApptType";
 import { Input, FormBtn } from "../ApptForm";
 import DbAPI from "../../utils/DbAPI";
 
@@ -12,7 +12,12 @@ export default class Scheduler extends React.Component {
     this.state = {
       selectedDay: null,
       title: "",
-      apptType: "",
+      apptTypes: [
+        {id:1, value: "Appointment", isChecked: false},
+        {id:2, value: "Reminder", isChecked: false},
+        {id:3, value: "Event", isChecked: false},
+        {id:4, value: "Misc", isChecked: false}
+      ],
       user: ""
     };
   }
@@ -61,6 +66,15 @@ export default class Scheduler extends React.Component {
     }
   };
 
+  handleCheckChieldElement = (event) => {
+    let apptTypes = this.state.apptTypes
+    apptTypes.forEach(apptType => {
+       if (apptType.value === event.target.value)
+          apptType.isChecked =  event.target.checked
+    })
+    this.setState({apptTypes: apptTypes})
+  }
+
   render() {
     return (
       <div className="container">
@@ -75,12 +89,13 @@ export default class Scheduler extends React.Component {
         <div className="row">
         <div className="col-sm-2" />
           <div className="col-sm-4">
-            <ApptList>
-              <ListItem 
-                value={this.state.apptType}
-                onChange={this.handleInputChange}
-              />
-            </ApptList>
+            <ApptType>
+              {
+                this.state.apptType.map((apptType) => {
+                  return(<CheckBox handleCheckChieldElement={this.handleCheckChieldElement} {...apptType} />)
+                })
+              }
+            </ApptType>
           </div>
           <div className="col-sm-4">
             <p>

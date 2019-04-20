@@ -1,5 +1,5 @@
 import axios from "axios";
-const Routes = {
+const ApptRoutes = {
     saveUser: function(data) {
       return axios.post("/api/user", data);
     },
@@ -13,4 +13,4 @@ const Routes = {
       return axios.delete("/api/scheduler/" + id)
     }
   }
-  export default Routes;
+  export default ApptRoutes;

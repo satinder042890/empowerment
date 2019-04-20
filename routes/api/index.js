@@ -1,7 +1,9 @@
 const router=require("express").Router();
+const apptRouter=require("express").Router();
 const userRoutes=require("./user");
-const apptRoutes=require("./appts");
+const apptRoutes=require("./scheduler");
 
 router.use("/user",userRoutes);
-router.use("/scheduler", apptRoutes);
+apptRouter.use("/scheduler", apptRoutes);
 module.exports=router;
+module.exports=apptRouter;
