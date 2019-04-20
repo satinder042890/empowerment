@@ -114,11 +114,10 @@ export default class Scheduler extends React.Component {
           </div>
           <div className="col-sm-2" />
 
-        </div>
+//         </div>
 
 
-      </div>
+//       </div>
     );
   }
 }
-

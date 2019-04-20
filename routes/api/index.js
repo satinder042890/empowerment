@@ -7,3 +7,8 @@ router.use("/user",userRoutes);
 apptRouter.use("/scheduler", apptRoutes);
 module.exports=router;
 module.exports=apptRouter;
+
+const loginRoutes=require("./login");
+router.use("/user",userRoutes);
+router.use("/login",loginRoutes);
+module.exports=router;

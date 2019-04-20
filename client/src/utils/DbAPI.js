@@ -11,6 +11,10 @@ const ApptRoutes = {
     },
     deleteAppt: function(id) {
       return axios.delete("/api/scheduler/" + id)
-    }
-  }
+    },
+      logIn: function(data){
+        return axios.post("/api/login",data);
+      }
+};
+
   export default ApptRoutes;
