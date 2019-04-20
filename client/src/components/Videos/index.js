@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Card from "../Card";
+import Navbar from "../Navbar";
 class Videos extends Component {
   state = {
     result: [],
@@ -30,6 +31,7 @@ class Videos extends Component {
 
     return (
     <div>
+      <Navbar id={this.props.match.params.id}/>
       {this.state.result.map(item =>
         
         <Card

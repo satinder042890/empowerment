@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./style.css";
 
 // const Health =(props)=>{
@@ -10,7 +10,7 @@ const Card =(props) =>{
     <div className="container" id ="mainDisplaySection">
        <div className="row align-items-center">
            <div className="col-12 col-md-3">
-               <iframe  src={url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <iframe  src={url} frameborder="0" title ={props.title} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div className="col-12 col-md-9">
                <h4 className="title">{props.title}</h4>

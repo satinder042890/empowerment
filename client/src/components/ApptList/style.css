@@ -1,0 +1,15 @@
+/* .fa-check {    			
+	opacity: 0;				
+} */
+.fa-check {				
+	opacity: 1;				
+}
+
+.list-group-item {
+	height: 50px;
+	width: 300px;
+}
+
+.list-btn {
+	line-height: 20px;
+}
