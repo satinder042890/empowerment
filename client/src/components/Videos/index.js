@@ -13,7 +13,7 @@ class Videos extends Component {
     const res = await API.get("/search", {
       params: {
         q: e
-      }
+      } 
     })
     console.log(res.data);
     this.setState({ result: res.data.items })

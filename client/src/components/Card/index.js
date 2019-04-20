@@ -1,6 +1,9 @@
 import React from "react";
 import "./style.css";
 
+// const Health =(props)=>{
+//   let url="https://"
+// }
 const Card =(props) =>{
   let url="https://www.youtube.com/embed/" + props.id;
   return(
@@ -19,5 +22,6 @@ const Card =(props) =>{
 
 }
 
+// export default Health;
 
 export default Card;
