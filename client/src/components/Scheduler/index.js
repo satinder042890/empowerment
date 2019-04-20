@@ -1,7 +1,7 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { ApptType, CheckBox } from "../ApptType";
+import { ApptList, ListItem } from "../ApptList";
 import { Input, FormBtn } from "../ApptForm";
 import DbAPI from "../../utils/DbAPI";
 
@@ -12,13 +12,7 @@ export default class Scheduler extends React.Component {
     this.state = {
       selectedDay: null,
       title: "",
-      apptTypes: [
-        {id:1, value: "Appointment", isChecked: false},
-        {id:2, value: "Reminder", isChecked: false},
-        {id:3, value: "Event", isChecked: false},
-        {id:4, value: "Misc", isChecked: false}
-      ],
-      user: ""
+      apptType: ""
     };
   }
   //add componentDidMount to call "load future appointments"
@@ -66,15 +60,6 @@ export default class Scheduler extends React.Component {
     }
   };
 
-  handleCheckChieldElement = (event) => {
-    let apptTypes = this.state.apptTypes
-    apptTypes.forEach(apptType => {
-       if (apptType.value === event.target.value)
-          apptType.isChecked =  event.target.checked
-    })
-    this.setState({apptTypes: apptTypes})
-  }
-
   render() {
     return (
       <div className="container">
@@ -89,13 +74,12 @@ export default class Scheduler extends React.Component {
         <div className="row">
         <div className="col-sm-2" />
           <div className="col-sm-4">
-            <ApptType>
-              {
-                this.state.apptType.map((apptType) => {
-                  return(<CheckBox handleCheckChieldElement={this.handleCheckChieldElement} {...apptType} />)
-                })
-              }
-            </ApptType>
+            <ApptList>
+              <ListItem 
+                value={this.state.apptType}
+                onChange={this.handleInputChange}
+              />
+            </ApptList>
           </div>
           <div className="col-sm-4">
             <p>
@@ -114,10 +98,10 @@ export default class Scheduler extends React.Component {
           </div>
           <div className="col-sm-2" />
 
-//         </div>
+        </div>
 
 
-//       </div>
+      </div>
     );
   }
 }

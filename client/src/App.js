@@ -5,7 +5,7 @@ import Tracker from "./components/Tracker";
 import Navbar from "./components/Navbar";
 import Entertainment from "./components/Entertainment";
 import SafetyTips from "./components/SafetyTips";
-// import Scheduler from "./components/Scheduler";
+import Scheduler from "./components/Scheduler";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
@@ -17,13 +17,13 @@ class App extends Component {
   return (
     <Router>
       <div>
-      {/* <Navbar/>  */}
+      <Navbar/> 
       <Switch>
         <Route exact path="/" component={Landingpage} />
         <Route  path="/videos/:category/:id" component={Videos} />
         <Route exact path="/tracker/:id" component={Tracker} />
         <Route exact path="/entertainment/:id" component={Entertainment} />
-        {/* <Route exact path="/scheduler" component={Scheduler} /> */}
+        <Route exact path="/scheduler" component={Scheduler} />
         <Route exact path="/safety/:id" component={SafetyTips} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

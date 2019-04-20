@@ -1,8 +1,15 @@
 import React from 'react';
 import "./style.css";
 
-export function ListItem() {
+export function ApptList ({children}) {
+    return (
+        <div className="list-overflow-container">
+            <ul className="list-group">{children}</ul>
+        </div>
+    );
+}
 
+export function ListItem() {
     return (
         <div className="list-container">
             <li className = "list-group-item">
@@ -12,10 +19,8 @@ export function ListItem() {
                     </div>
                     <div className = "col-sm-4">
                         <label className="btn btn-info list-btn">
-				            <input type="checkbox" 
-                                checked={this.state.typeAppointment}
-                                onChange={this.toggleChangeTypeA}
-                            />
+				            <input type="radio" name="options" id="appointment" autocomplete="off" />
+				            <span className="fas fa-check"></span>
 			            </label>
                     </div>
                 </div>
@@ -28,7 +33,7 @@ export function ListItem() {
                     </div>
                     <div className = "col-sm-4">
                         <label className="btn btn-warning list-btn">
-				            <input type="radio" name="options" id="reminder" />
+				            <input type="radio" name="options" id="reminder" autocomplete="off" />
 				            <span className="fas fa-check"></span>
 			            </label>
                     </div>
@@ -42,7 +47,7 @@ export function ListItem() {
                     </div>
                     <div className = "col-sm-4">
                         <label className="btn btn-success list-btn">
-				            <input type="checkbox" name="options" id="event"/>
+				            <input type="radio" name="options" id="event" autocomplete="off" />
 				            <span className="fas fa-check"></span>
 			            </label>
                     </div>
@@ -56,7 +61,7 @@ export function ListItem() {
                     </div>
                     <div className = "col-sm-4">
                         <label className="btn btn-danger list-btn">
-				            <input type="radio" name="options" id="misc" />
+				            <input type="radio" name="options" id="misc" autocomplete="off" />
 				            <span className="fas fa-check"></span>
 			            </label>
                     </div>
