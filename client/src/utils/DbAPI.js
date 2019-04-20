@@ -1,10 +1,20 @@
 import axios from "axios";
-const Routes = {
+const ApptRoutes = {
     saveUser: function(data) {
       return axios.post("/api/user", data);
     },
-    logIn: function(data){
-      return axios.post("/api/login",data);
-    }
-  }
-  export default Routes;
+    saveAppt: function(data) {
+      return axios.post("/api/scheduler", data)
+    },
+    getAppts: function() {
+      return axios.get("/api/scheduler")
+    },
+    deleteAppt: function(id) {
+      return axios.delete("/api/scheduler/" + id)
+    },
+      logIn: function(data){
+        return axios.post("/api/login",data);
+      }
+};
+
+  export default ApptRoutes;

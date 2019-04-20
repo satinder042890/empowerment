@@ -8,66 +8,67 @@ export function ApptList ({children}) {
         </div>
     );
 }
+export default ApptList
 
-export function ListItem() {
-    return (
-        <div className="list-container">
-            <li className = "list-group-item">
-                <div className = "row">
-                    <div className = "col-sm-8">
-                        <h5>Appointment</h5>
-                    </div>
-                    <div className = "col-sm-4">
-                        <label className="btn btn-info list-btn">
-				            <input type="radio" name="options" id="appointment" autocomplete="off" />
-				            <span className="fas fa-check"></span>
-			            </label>
-                    </div>
-                </div>
-            </li>
+// export function ListItem() {
+//     return (
+//         <div className="list-container">
+//             <li className = "list-group-item">
+//                 <div className = "row">
+//                     <div className = "col-sm-8">
+//                         <h5>Appointment</h5>
+//                     </div>
+//                     <div className = "col-sm-4">
+//                         <label className="btn btn-info list-btn">
+// 				            <input type="radio" name="options" value="appointment" />
+// 				            <span className="fas fa-check"></span>
+// 			            </label>
+//                     </div>
+//                 </div>
+//             </li>
 
-            <li className = "list-group-item">
-                <div className = "row">
-                    <div className = "col-sm-8">
-                        <h5>Reminder</h5>
-                    </div>
-                    <div className = "col-sm-4">
-                        <label className="btn btn-warning list-btn">
-				            <input type="radio" name="options" id="reminder" autocomplete="off" />
-				            <span className="fas fa-check"></span>
-			            </label>
-                    </div>
-                </div>
-            </li>
+//             <li className = "list-group-item">
+//                 <div className = "row">
+//                     <div className = "col-sm-8">
+//                         <h5>Reminder</h5>
+//                     </div>
+//                     <div className = "col-sm-4">
+//                         <label className="btn btn-warning list-btn">
+// 				            <input type="radio" name="options" value="reminder" />
+// 				            <span className="fas fa-check"></span>
+// 			            </label>
+//                     </div>
+//                 </div>
+//             </li>
 
-            <li className = "list-group-item">
-                <div className = "row">
-                    <div className = "col-sm-8">
-                        <h5>Event</h5>
-                    </div>
-                    <div className = "col-sm-4">
-                        <label className="btn btn-success list-btn">
-				            <input type="radio" name="options" id="event" autocomplete="off" />
-				            <span className="fas fa-check"></span>
-			            </label>
-                    </div>
-                </div>
-            </li>
+//             <li className = "list-group-item">
+//                 <div className = "row">
+//                     <div className = "col-sm-8">
+//                         <h5>Event</h5>
+//                     </div>
+//                     <div className = "col-sm-4">
+//                         <label className="btn btn-success list-btn">
+// 				            <input type="radio" name="options" value="event" />
+// 				            <span className="fas fa-check"></span>
+// 			            </label>
+//                     </div>
+//                 </div>
+//             </li>
 
-            <li className = "list-group-item">
-                <div className = "row">
-                    <div className = "col-sm-8">
-                        <h5>Misc</h5>
-                    </div>
-                    <div className = "col-sm-4">
-                        <label className="btn btn-danger list-btn">
-				            <input type="radio" name="options" id="misc" autocomplete="off" />
-				            <span className="fas fa-check"></span>
-			            </label>
-                    </div>
-                </div>
-            </li>
+//             <li className = "list-group-item">
+//                 <div className = "row">
+//                     <div className = "col-sm-8">
+//                         <h5>Misc</h5>
+//                     </div>
+//                     <div className = "col-sm-4">
+//                         <label className="btn btn-danger list-btn">
+// 				            <input type="radio" name="options" value="misc" />
+// 				            <span className="fas fa-check"></span>
+// 			            </label>
+//                     </div>
+//                 </div>
+//             </li>
 
-        </div>
-    );
-}
+//         </div>
+//     );
+// }

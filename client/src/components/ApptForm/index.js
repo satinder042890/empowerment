@@ -5,7 +5,7 @@ import React from "react";
 export function Input(props) {
   return (
     <div className="form-group">
-      <input className="form-control" placeholder="Event Name" id="event-name" {...props} />
+      <input className="form-control" id="event-name" type="text" {...props} />
     </div>
   );
 }
@@ -18,8 +18,8 @@ export function Input(props) {
 //   );
 // }
 
-export function FormBtn() {
+export function FormBtn(props) {
   return (
-    <button className="btn btn-success" id="submit-btn">Save</button>
+    <button {...props} className="btn btn-success" id="submit-btn">{props.children}</button>
   );
 }
