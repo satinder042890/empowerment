@@ -18,8 +18,8 @@ export function Input(props) {
 //   );
 // }
 
-export function FormBtn() {
+export function FormBtn(props) {
   return (
-    <button className="btn btn-success" id="submit-btn">Save</button>
+    <button {...props} className="btn btn-success" id="submit-btn">{props.children}</button>
   );
 }

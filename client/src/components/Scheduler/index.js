@@ -1,9 +1,10 @@
 import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { ApptList, ListItem } from "../ApptList";
+import ApptList from "../ApptList";
 import { Input, FormBtn } from "../ApptForm";
 import DbAPI from "../../utils/DbAPI";
+import Navbar from "../Navbar";
 
 export default class Scheduler extends React.Component {
   constructor(props) {
@@ -12,13 +13,14 @@ export default class Scheduler extends React.Component {
     this.state = {
       selectedDay: null,
       title: "",
-      apptType: ""
+      apptType: "",
+      // id: ""
     };
   }
   //add componentDidMount to call "load future appointments"
-  componentDidMount() {
-    this.loadAppts();
-  }
+  // componentDidMount() {
+  //   this.loadAppts();
+  // }
   //function to load future appts
   loadAppts = () => {
     DbAPI.getAppts()
@@ -44,41 +46,129 @@ export default class Scheduler extends React.Component {
     });
   }
 
+  handleRadioButton(value) {
+    this.setState({
+      apptType: value
+    });
+  };
 
   //add a handleFormSubmit for new appointments
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if(this.state.title && this.state.selectedDay && this.state.apptType) {
+    // if(this.state.title && this.state.selectedDay && this.state.apptType) {
+      console.log("clicked");
       DbAPI.saveAppt({
         title: this.state.title,
         date: this.state.selectedDay,
         apptType: this.state.apptType
+        // _userId: this.props.match.params.id
       })
-      .then(res => this.loadAppts())
+      // .then(res => this.loadAppts())
+      .then(console.log("submitted"))
       .catch(err => console.log(err));
-    }
+    // }
   };
+
 
   render() {
     return (
+    <div>
+
+      <Navbar id={this.props.match.params.id}/>
+
       <div className="container">
         <h1>Scheduler</h1>
         <div className="row" style={{display: 'flex', justifyContent: 'center' }}>
             <DayPicker
               selectedDays={this.state.selectedDay}
               onDayClick={this.handleDayClick}
-            />
+              />
         </div>
 
         <div className="row">
         <div className="col-sm-2" />
           <div className="col-sm-4">
             <ApptList>
-              <ListItem 
-                value={this.state.apptType}
+              {/* <ListItem 
+                checked={this.state.apptType}
                 onChange={this.handleInputChange}
-              />
+              /> */}
+              <div className="list-container">
+                <li className = "list-group-item">
+                    <div className = "row">
+                        <div className = "col-sm-8">
+                            <h5>Appointment</h5>
+                        </div>
+                        <div className = "col-sm-4">
+                            <label className="btn btn-info list-btn">
+                              <input 
+                                type="radio" 
+                                value="appointment"
+                                checked={this.state.apptType === "appointment"}
+                                onChange={() => this.handleRadioButton("appointment")}
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </li>
+
+                <li className = "list-group-item">
+                    <div className = "row">
+                        <div className = "col-sm-8">
+                            <h5>Reminder</h5>
+                        </div>
+                        <div className = "col-sm-4">
+                          <label className="btn btn-warning list-btn">
+                            <input 
+                              type="radio"
+                              value="reminder"
+                              checked={this.state.apptType === "reminder"}
+                              onChange={() => this.handleRadioButton("reminder")}
+                              />
+                          </label>
+                        </div>
+                    </div>
+                </li>
+
+                <li className = "list-group-item">
+                    <div className = "row">
+                        <div className = "col-sm-8">
+                            <h5>Event</h5>
+                        </div>
+                        <div className = "col-sm-4">
+                          <label className="btn btn-success list-btn">
+                            <input 
+                              type="radio"
+                              value="event"
+                              checked={this.state.apptType === "event"}
+                              onChange={() => this.handleRadioButton("event")}
+                              />
+                          </label>
+                        </div>
+                    </div>
+                </li>
+
+                <li className = "list-group-item">
+                    <div className = "row">
+                        <div className = "col-sm-8">
+                            <h5>Misc</h5>
+                        </div>
+                        <div className = "col-sm-4">
+                          <label className="btn btn-danger list-btn">
+                            <input 
+                              type="radio" 
+                              value="misc"
+                              checked={this.state.apptType === "misc"}
+                              onChange={() => this.handleRadioButton("misc")}
+                              />
+                          </label>
+                        </div>
+                    </div>
+                </li>
+
+              </div>
+
             </ApptList>
           </div>
           <div className="col-sm-4">
@@ -90,18 +180,21 @@ export default class Scheduler extends React.Component {
               onChange={this.handleInputChange}
               name="title"
               placeholder="Title"
-            />
+              />
             <FormBtn 
               disabled={!(this.state.selectedDay && this.state.title)}
               onClick={this.handleFormSubmit}
-            />
+              >
+              Save
+              </FormBtn>
           </div>
           <div className="col-sm-2" />
 
         </div>
-
-
       </div>
+    </div>  
+
+
     );
   }
 }

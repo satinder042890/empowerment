@@ -1,7 +1,7 @@
-.btn span.fa-check {    			
+/* .fa-check {    			
 	opacity: 0;				
-}
-.btn.active span.fa-check {				
+} */
+.fa-check {				
 	opacity: 1;				
 }
 
