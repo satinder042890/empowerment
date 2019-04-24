@@ -28,15 +28,17 @@ class Tracker extends Component{
         this.getAddress(position.coords.latitude,position.coords.longitude);
       }
       getAddress=(lat,lng)=>{
-        
+        let address="",details ="";
         API.getAddress(lat,lng).then(function(res){
         
         const data=res.data.results[0].locations[0];
-        const address=data.street+" , "+data.adminArea5+" , "+data.adminArea3+" , "+data.adminArea1+" , "+data.postalCode;
+        address=data.street+" , "+data.adminArea5+" , "+data.adminArea3+" , "+data.adminArea1+" , "+data.postalCode;
        console.log(address);         
         })
         API.getContact(this.props.match.params.id).then(function(res){
-          console.log(res);
+          console.log(res.data.number);
+          console.log(res.data.message)
+          
         })
       }
       getLocation=() =>{

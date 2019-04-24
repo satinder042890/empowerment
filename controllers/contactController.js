@@ -3,7 +3,7 @@ module.exports={
     
 
     create:function(req,res){
-        console.log("hiii");
+      
         db.Contact.create(req.body)
         .then(function(userdata) {
            
