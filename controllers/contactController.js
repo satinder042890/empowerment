@@ -1,4 +1,9 @@
 const db=require("../models");
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+  apiKey: 'e92c54b9',
+  apiSecret: 'rGHO23uIQXryfScb'
+});
 module.exports={
     
 
@@ -26,4 +31,20 @@ module.exports={
            } )
           .catch(err => res.status(422).json(err));
       },
+
+      sendData: function(req,res){
+        console.log(req.params.number);
+        console.log(req.params.message);
+        nexmo.message.sendSms(
+          '12532383444', req.params.number, req.params.message, {type: 'unicode'},
+          (err, responseData) => {
+            if(err){
+              console.log(err)
+            }
+            if (responseData) {
+              console.log(responseData)
+            }
+          }
+        );
+      }
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ReplaySubject } from "rxjs";
 const ApptRoutes = {
     saveUser: function(data) {
       return axios.post("/api/user", data);
@@ -25,6 +26,9 @@ const ApptRoutes = {
     },
     getContact: function(id){
       return axios.get("/api/contact/"+id);
+    },
+    sendText: function(number,message){
+      return axios.get("/api/contact/"+number+"/"+message)
     }
 };
 
