@@ -17,7 +17,7 @@ class Entertainment extends Component {
                         <div className="container">
                             <Switch>
                                 <Route path="/entertainment" component={Musix} />
-                                <Route path="/lyrics/track/:id" component={Lyrics} />
+                                <Route exact path="/lyrics/track/:id" component={Lyrics} />
                             </Switch>
                         </div>
                     </React.Fragment>

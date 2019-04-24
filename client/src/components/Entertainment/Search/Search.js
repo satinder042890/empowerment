@@ -5,36 +5,56 @@ import { Consumer } from '../Context.js';
 
 
 // const URL = "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/apikey=";
-class Search extends Component{
+
+class Search extends Component {
   state = {
     trackTitle: ''
   };
-  
-  findTrack = ( result, dispatch, e) => {
-    e. preventDefault();
-    const key = "8f375c461fb3c497746d61ebf2dd98b5";
-    const URL = `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${this.state.trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${key}`;
-    
-    fetch(URL, {
-      method:"GET"
-    })
-    .then(result =>{
-      console.log(result);
-      return result.json()
-    },dispatch({
-      type: "SEARCH_TRACKS",
-      load: result.data.message.body.track_list
-    })
-    )
-    .then(data => {
-      this.setState({ trackTitle: '' });
-      console.log(data);
-    })
-    .catch(err=> console.log(err))
-  };
+ 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  findTrack = (dispatch, e) => {
+    e.preventDefault();
+
+    const key = "8f375c461fb3c497746d61ebf2dd98b5";
+    const URL = `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
+      this.state.trackTitle
+      }&page_size=10&page=1&s_track_rating=desc&apikey=${key}`;
+
+    axios.get(URL)
+      .then(res => {
+        console.log(res);
+        dispatch({
+          type: 'SEARCH_TRACKS',
+          load: res.data.message.body.track_list
+        });
+        this.setState({ trackTitle: '' });
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  //   axios
+  //     .get(
+  //       `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${
+  //         this.state.trackTitle
+  //       }&page_size=10&page=1&s_track_rating=desc&apikey=${key}`
+  //     )
+  //     .then(res => {
+  //       dispatch({
+  //         type: 'SEARCH_TRACKS',
+  //         load: res.data.message.body.track_list
+  //       });
+
+  //       this.setState({ trackTitle: '' });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+ 
+
   render() {
     return (
       <Consumer>
@@ -70,10 +90,6 @@ class Search extends Component{
       </Consumer>
     );
   }
-
 }
-
-
-
 
 export default Search;
