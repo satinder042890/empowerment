@@ -5,12 +5,16 @@ import ApptList from "../ApptList";
 import { Input, FormBtn } from "../ApptForm";
 import DbAPI from "../../utils/DbAPI";
 import Navbar from "../Navbar";
+import { FutureAppt, FutureItems } from "../FutureAppt";
+import DeleteBtn from "../DeleteBtn";
+
 
 export default class Scheduler extends React.Component {
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
+      appointments: [],
       selectedDay: null,
       title: "",
       apptType: "",
@@ -18,14 +22,14 @@ export default class Scheduler extends React.Component {
     };
   }
   //add componentDidMount to call "load future appointments"
-  // componentDidMount() {
-  //   this.loadAppts();
-  // }
+  componentDidMount() {
+    this.loadAppts();
+  }
   //function to load future appts
   loadAppts = () => {
     DbAPI.getAppts()
       .then(res => 
-        this.setState({})
+        this.setState({ appointments: res.data, title: "", date: "", apptType: "" })
         )
         .catch(err => console.log(err));
   };
@@ -64,10 +68,16 @@ export default class Scheduler extends React.Component {
         apptType: this.state.apptType
         // _userId: this.props.match.params.id
       })
-      // .then(res => this.loadAppts())
+      .then(res => this.loadAppts())
       .then(console.log("submitted"))
       .catch(err => console.log(err));
     // }
+  };
+
+  deleteAppt = id => {
+    DbAPI.deleteBook(id)
+      .then(res => this.loadAppts())
+      .catch(err => console.log(err));
   };
 
 
@@ -192,6 +202,39 @@ export default class Scheduler extends React.Component {
 
         </div>
       </div>
+      <div className="container">
+        <div className="row futureRow" style={{display: 'flex', justifyContent: 'center' }}>
+          <h2>Upcoming Appointments</h2>
+        </div>
+        {this.state.appointments.length ? (
+              <FutureAppt>
+                {this.state.appointments.map(appointment => {
+                  return (
+                    <FutureItems 
+                      key={appointment._id}
+                      title={appointment.title}
+                      apptType={appointment.apptType}
+                      date={appointment.date}
+                      >
+                      <DeleteBtn onClick={() => this.deleteAppt(appointment._id)} />
+                    </FutureItems>
+                  );
+                })}
+              </FutureAppt>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+      </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </div>  
 
 

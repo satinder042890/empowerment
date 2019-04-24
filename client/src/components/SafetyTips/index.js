@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HealthAPI from "../../utils/HealthApi";
 import getDoctors from "../../utils/HealthApi";
 import DoctorCard from "./HealthCard/healthcard";
+import Navbar from "../Navbar";
 class Health extends Component {
   state= {
     firstname: "",
@@ -19,6 +20,7 @@ class Health extends Component {
     return (
         
       <div>
+        <Navbar id={this.props.match.params.id}/>
           <input type="text" placeholder="First Name" value ={this.state.firstname} onChange= {x => this.updateFirstName(x)} />
 
           <br></br>
