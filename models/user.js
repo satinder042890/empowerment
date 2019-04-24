@@ -16,7 +16,11 @@ const UserSchema = new Schema({
   contact: {
     type: Schema.Types.ObjectId,
     ref: "Contact"
-  }
+  },
+  appointment: {
+    type: Schema.Types.ObjectId,
+    ref: "Appointment"
+  },
 });
 UserSchema.pre('save', function(next) {
   var user = this;

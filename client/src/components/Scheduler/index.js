@@ -75,7 +75,7 @@ export default class Scheduler extends React.Component {
   };
 
   deleteAppt = id => {
-    DbAPI.deleteBook(id)
+    DbAPI.deleteAppt(id)
       .then(res => this.loadAppts())
       .catch(err => console.log(err));
   };
