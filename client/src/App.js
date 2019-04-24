@@ -17,7 +17,7 @@ class App extends Component {
   return (
     <Router>
       <div>
-      <Navbar/> 
+      {/* <Navbar/>  */}
       <Switch>
         <Route exact path="/" component={Landingpage} />
         <Route  path="/videos/:category/:id" component={Videos} />
