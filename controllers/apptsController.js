@@ -12,9 +12,16 @@ module.exports = {
     // },
 
     create: function(req, res) {
-        db.Appointment.create(req.body).then(function(dbAppointment) {
-            res.json(dbAppointment);
-        });
+        console.log(req.params.id);
+        db.Appointment
+        .create(req.body)
+        .then(function(userdata) {
+            return db.User.findOneAndUpdate({ _id: req.params.id }, { appointment: userdata._id }, { new: true });
+        })
+        .then(data =>res.json(data))
+        .catch(err =>res.status(422).json(err))
+
+        
     },
     findAll: function(req, res) {
         db.Appointment
@@ -24,9 +31,15 @@ module.exports = {
           .catch(err => res.status(422).json(err));
     },
     findById: function(req, res) {
-        db.Appointment
-          .findById({_userId: req.params.id})
-          .then(data => res.json(data))
+        db.User
+          .findById( req.params.id)
+          .then(dbModel => {
+              console.log(dbModel)
+              db.Appointment
+                .findById(dbModel.appointment)
+                .then(data =>res.json(data)
+                )
+            })
           .catch(err => res.status(422).json(err));
     },
     delete: function(req, res) {

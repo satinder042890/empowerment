@@ -3,7 +3,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import ApptList from "../ApptList";
 import { Input, FormBtn } from "../ApptForm";
-import DbAPI from "../../utils/DbAPI";
+import API from "../../utils/DbAPI";
 import Navbar from "../Navbar";
 import { FutureAppt, FutureItems } from "../FutureAppt";
 import DeleteBtn from "../DeleteBtn";
@@ -26,15 +26,31 @@ export default class Scheduler extends React.Component {
     this.loadAppts();
   }
   //function to load future appts
-  loadAppts = () => {
-    DbAPI.getAppts()
-      .then(res => 
-        this.setState({ appointments: res.data, title: "", date: "", apptType: "" })
-        )
-        .catch(err => console.log(err));
-  };
-  //add function to delete appts
 
+  // loadAppts = () => {
+  //   API.getAppts(this.props.match.params.id)
+  //     .then(function(res) {
+  //       console.log(res);
+  //     })
+  //   };
+
+    // .then(res => 
+    //     this.setState({appointments: res.data, title: "", date: "", apptType: "" })
+    // )
+    //     .then(console.log(this.state.appointments))
+    //     .catch(err => console.log(err));
+
+    loadAppts = () => {
+      API.getAppts(this.props.match.params.id)
+        .then(res => {
+          this.setState({appointments: res.data})
+          console.log(res.data);
+          console.log(this.state.appointments);
+          console.log(this.state.appointments.length);
+        });
+    };
+
+    
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
   const { name, value } = event.target;
@@ -62,20 +78,21 @@ export default class Scheduler extends React.Component {
     event.preventDefault();
     // if(this.state.title && this.state.selectedDay && this.state.apptType) {
       console.log("clicked");
-      DbAPI.saveAppt({
+      API.saveAppt(this.props.match.params.id,{
         title: this.state.title,
         date: this.state.selectedDay,
         apptType: this.state.apptType
-        // _userId: this.props.match.params.id
       })
-      .then(res => this.loadAppts())
-      .then(console.log("submitted"))
+      .then(res => {
+        console.log(res)
+        this.setState({title: "", date: "", apptType: ""})
+        this.loadAppts()})
       .catch(err => console.log(err));
     // }
   };
 
   deleteAppt = id => {
-    DbAPI.deleteAppt(id)
+    API.deleteAppt(id)
       .then(res => this.loadAppts())
       .catch(err => console.log(err));
   };
@@ -206,24 +223,18 @@ export default class Scheduler extends React.Component {
         <div className="row futureRow" style={{display: 'flex', justifyContent: 'center' }}>
           <h2>Upcoming Appointments</h2>
         </div>
-        {this.state.appointments.length ? (
+        {/* {this.state.appointments.length ? ( */}
               <FutureAppt>
-                {this.state.appointments.map(appointment => {
-                  return (
                     <FutureItems 
-                      key={appointment._id}
-                      title={appointment.title}
-                      apptType={appointment.apptType}
-                      date={appointment.date}
+                      key={this.state.appointments._id}
+                      title={this.state.appointments.title}
+                      apptType={this.state.appointments.apptType}
+                      date={this.state.appointments.date}
                       >
-                      <DeleteBtn onClick={() => this.deleteAppt(appointment._id)} />
+                      {/* <DeleteBtn onClick={() => this.deleteAppt(appointment._id)} /> */}
                     </FutureItems>
-                  );
-                })}
+                  ); 
               </FutureAppt>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
 
       </div>
     
