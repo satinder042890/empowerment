@@ -1,4 +1,4 @@
-import axios from "axios";
+import * as axios from "axios";
 import { ReplaySubject } from "rxjs";
 const ApptRoutes = {
     saveUser: function(data) {
@@ -23,6 +23,9 @@ const ApptRoutes = {
 
     saveContact: function(id,data){
       return axios.post("/api/contact/"+id , data);
+    },
+    updateContact: function(id,data){
+      return axios.post("/api/updateContact/"+id , data);
     },
     getContact: function(id){
       return axios.get("/api/contact/"+id);

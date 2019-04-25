@@ -1,0 +1,16 @@
+.list{
+    margin-top: 2%;
+    color:green;
+    font-size: 20px;
+}
+.list-inline-item{
+    padding: 1%;
+    border-right: 1px solid green;
+    
+}
+.first{
+    border-left: 1px solid green;
+}
+ul li:hover{
+    color:purple;
+}

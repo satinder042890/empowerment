@@ -32,6 +32,22 @@ module.exports={
           .catch(err => res.status(422).json(err));
       },
 
+      update: function(req,res){
+        db.User
+        .findById(req.params.id)
+        .then(dbModel => {
+            console.log(dbModel)
+            return db.Contact.findOneAndUpdate({ _id: dbModel.contact }, { number:req.body.number , message: req.body.message }, { new: true });
+          })
+        .then(data =>{
+          console.log(data)
+          res.json(data)
+        })
+        
+      //   res.json(dbModel)
+ 
+        .catch(err => res.status(422).json(err));
+      },
       sendData: function(req,res){
         console.log(req.params.number);
         console.log(req.params.message);
