@@ -27,18 +27,39 @@ class Tracker extends Component{
         console.log("Longitude: " + position.coords.longitude);
         this.getAddress(position.coords.latitude,position.coords.longitude);
       }
-      getAddress=(lat,lng)=>{
-        
-        API.getAddress(lat,lng).then(function(res){
+
+      sendMessage =(number,message,address) =>{
+        console.log("sendmessage function data")
+        console.log(number);
+        message+=" at "+address
+          // console.log(message + address);
+           console.log(message);
+
+          API.sendText(number,message).then(function(res){
+            console.log(res);
+          })
+      }
+
+       getAddress= async(lat,lng)=>{
+        var address="",number =0 ,message="";
+        await API.getAddress(lat,lng).then(function(res){
         
         const data=res.data.results[0].locations[0];
-        const address=data.street+" , "+data.adminArea5+" , "+data.adminArea3+" , "+data.adminArea1+" , "+data.postalCode;
-       console.log(address);         
+        address=data.street+" , "+data.adminArea5+" , "+data.adminArea3+" , "+data.adminArea1+" , "+data.postalCode;
+      //  console.log(address);         
         })
-        API.getContact(this.props.match.params.id).then(function(res){
-          console.log(res);
+        await API.getContact(this.props.match.params.id).then(function(res){
+         
+          number=res.data.number;
+          message=res.data.message;
+          // console.log(number);
+          // console.log(message)
+         
         })
+        await this.sendMessage(number,message,address);
       }
+
+      
       getLocation=() =>{
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.showPosition);
