@@ -4,7 +4,6 @@ var session = require("express-session");
 var passport = require("./config/passport");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 4001;
 // Define middleware here
@@ -12,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.resolve(__dirname, '..', "build")));
+  app.use(express.static("client/build"));
 }
 
 // We need to use sessions to keep track of our user's login status
