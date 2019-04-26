@@ -139,10 +139,12 @@ class Tracker extends Component {
           </Formgroup>
           : this.state.changedetails ?
             <Formgroup>
-              <Input name="number" labelname="Enter Number with code" value={this.state.number} onChange={this.handleChange}></Input>
-              <Input name="message" labelname="Enter Message" value={this.state.message} onChange={this.handleChange}></Input>
-              <Button onClick={this.updateNumber}>Update Number</Button>
+              <Input type="text" name="number" labelname="Enter Number with code" value={this.state.number} onChange={this.handleChange}></Input>
+              <Input type="text" name="message" labelname="Enter Message" value={this.state.message} onChange={this.handleChange}></Input>
+              <Button onClick={this.updateNumber}>Save Number</Button>
             </Formgroup>
+         
+            
             : this.state.track ?
               <Formgroup>
                 <h3>Click danger button for help</h3>
