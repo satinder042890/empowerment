@@ -117,7 +117,7 @@ class Health extends Component {
 
   updateFirstName = (x) => this.setState({firstname:x.target.value})
   updateLastName = (a) => this.setState({lastname:a.target.value})
-  // updateSpecialty = (b) => this.setState({specialty:b.target.value})
+  updateSpecialty = (b) => this.setState({specialty:b.target.value})
   updateZipcode = (c) => this.setState({zipcode:c.target.value})
 
   handleclick = async (e) => {
