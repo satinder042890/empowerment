@@ -46,11 +46,13 @@ export default class Scheduler extends React.Component {
           this.setState({appointments: res.data})
           console.log(res.data);
           console.log(this.state.appointments);
-          console.log(this.state.appointments.length);
+          console.log(this.state.appointments._id);
+          // console.log(this.state.appointments.length);
         });
     };
 
-    
+
+
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
   const { name, value } = event.target;

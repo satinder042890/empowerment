@@ -17,10 +17,12 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Contact"
   },
-  appointment: {
+  appointment: [
+    {
     type: Schema.Types.ObjectId,
     ref: "Appointment"
-  },
+  }
+]
 });
 UserSchema.pre('save', function(next) {
   var user = this;
