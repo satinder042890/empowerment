@@ -26,8 +26,20 @@ class Health extends Component {
           <input type="text" placeholder="Last Name" value={this.state.lastname} onChange= {a => this.updateLastName(a)} />
 
           <br></br>
+
+          <div class="input-group mb-3">
+          {/* <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Specialties</label>
+          </div> */}
+        <select class="custom-select" id="inputGroupSelect01" value={this.state.specialty} onChange= {b => this.updateSpecialty(b)}>
+          <option selected>Specialties...</option>
+          <option value="massage-therapy">Massage Therapy</option>
+          <option value="dentist">Dentist</option>
+          <option value="3">Three</option>
+        </select>
+        </div>
           
-          <input type="text" placeholder="Specialty" value={this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)} />
+          {/* <input type="text" placeholder="Specialty" value={this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)} /> */}
         
           
           <br></br>
