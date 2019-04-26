@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HealthAPI from "../../utils/HealthApi";
 import getDoctors from "../../utils/HealthApi";
 import DoctorCard from "./HealthCard/healthcard";
+import Navbar from "../Navbar";
 class Health extends Component {
   state= {
     firstname: "",
@@ -9,8 +10,10 @@ class Health extends Component {
     specialty: "",
     zipcode: "",
     doctors : [],
+    
   };
 
+  
 
 
   render() {
@@ -19,6 +22,7 @@ class Health extends Component {
     return (
         
       <div>
+        <Navbar id={this.props.match.params.id}/>
           <input type="text" placeholder="First Name" value ={this.state.firstname} onChange= {x => this.updateFirstName(x)} />
 
           <br></br>
@@ -113,10 +117,11 @@ class Health extends Component {
 
   updateFirstName = (x) => this.setState({firstname:x.target.value})
   updateLastName = (a) => this.setState({lastname:a.target.value})
-  updateSpecialty = (b) => this.setState({specialty:b.target.value})
+  // updateSpecialty = (b) => this.setState({specialty:b.target.value})
   updateZipcode = (c) => this.setState({zipcode:c.target.value})
 
   handleclick = async (e) => {
+    // console.log(this.state.specialty)
     //provide dropdown for specialty and make it lowercase
     const res = await getDoctors(this.state.specialty, this.state.zipcode, this.state.firstname, this.state.lastname);
     //HealthAPI.get("/")
