@@ -16,7 +16,7 @@ module.exports = {
         db.Appointment
         .create(req.body)
         .then(function(userdata) {
-            return db.User.findOneAndUpdate({ _id: req.params.id }, { appointment: userdata._id }, { new: true });
+            return db.User.findOneAndUpdate({ _id: req.params.id }, { "$push": { appointment: userdata._id } }, { new: true });
         })
         .then(data =>res.json(data))
         .catch(err =>res.status(422).json(err))
@@ -24,12 +24,19 @@ module.exports = {
         
     },
     findAll: function(req, res) {
-        db.Appointment
-          .find(req.query)
+        db.User
+          .find({_id: req.params.id})
           .sort({ date: -1 })
-          .then(dbAppointment => res.json(dbAppointment))
-          .catch(err => res.status(422).json(err));
+          .then(dbModel => {
+            console.log(dbModel)
+            db.Appointment
+              .findById(dbModel.appointment)
+              .then(data =>res.json(data)
+              )
+          })
+        .catch(err => res.status(422).json(err));
     },
+
     findById: function(req, res) {
         db.User
           .findById( req.params.id)

@@ -43,11 +43,13 @@ export default class Scheduler extends React.Component {
     loadAppts = () => {
       API.getAppts(this.props.match.params.id)
         .then(res => {
-          this.setState({appointments: res.data})
+          let newAppt = this.state.appointments.slice();
+          newAppt.push(res.data);
+          this.setState({appointments: newAppt})
           console.log(res.data);
           console.log(this.state.appointments);
           console.log(this.state.appointments._id);
-          // console.log(this.state.appointments.length);
+          console.log(this.state.appointments.length);
         });
     };
 
@@ -225,32 +227,30 @@ export default class Scheduler extends React.Component {
         <div className="row futureRow" style={{display: 'flex', justifyContent: 'center' }}>
           <h2>Upcoming Appointments</h2>
         </div>
-        {/* {this.state.appointments.length ? ( */}
+        {this.state.appointments.length ? (
               <FutureAppt>
+                {this.state.appointments.map(appointment => {
+                  return (
+
                     <FutureItems 
-                      key={this.state.appointments._id}
-                      title={this.state.appointments.title}
-                      apptType={this.state.appointments.apptType}
-                      date={this.state.appointments.date}
-                      >
-                      {/* <DeleteBtn onClick={() => this.deleteAppt(appointment._id)} /> */}
-                    </FutureItems>
-                  ); 
+                    
+                    
+                    key={appointment._id}
+                    title={appointment.title}
+                    apptType={appointment.apptType}
+                    date={appointment.date}
+                    >
+                        {/* <DeleteBtn onClick={() => this.deleteAppt(appointment._id)} /> */}
+                        </FutureItems>
+                    );
+                  })}
               </FutureAppt>
-
-      </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        ) : (
+          <h3>No Results to Display</h3>
+          )
+          };
     </div>  
-
-
-    );
+  </div>
+    )
   }
 }
