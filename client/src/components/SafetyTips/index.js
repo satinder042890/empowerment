@@ -10,8 +10,12 @@ class Health extends Component {
     specialty: "",
     zipcode: "",
     doctors : [],
+    
   };
 
+  getValue = (e)=>{
+    this.setState({specialty:e.target.value})
+  }
 
 
   render() {
@@ -28,8 +32,29 @@ class Health extends Component {
           <input type="text" placeholder="Last Name" value={this.state.lastname} onChange= {a => this.updateLastName(a)} />
 
           <br></br>
+
+        <div class="input-group mb-3">
+          {/* <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Specialties</label>
+          </div> */}
+        <select class="custom-select" id="inputGroupSelect01" value={this.state.specialty} onChange={this.getValue}>
+          <option selected>Specialties...</option>
+          <option value="massage-therapy">Massage Therapy</option>
+          <option value="dentist">Dentist</option>
+          <option value="3">Three</option>
+        </select>
+        </div>
+
           
-          <input type="text" placeholder="Specialty" value={this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)} />
+          {/* <select className= "chosenselect" placeholder = "Specialty" value = {this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)}>
+          <option value = {this.state.specialty}>dentist</option>
+          <option value = {this.state.specialty}>massage-therapy</option>
+
+          </select> */}
+          {/* event.target.value = 
+
+          <select value={speciality[0]}>{speciality[0]}</select> */}
+          {/* <input type="text" placeholder="Specialty" value={this.state.specialty.toLowerCase()} onChange= {b => this.updateSpecialty(b)} /> */}
         
           
           <br></br>
@@ -103,10 +128,11 @@ class Health extends Component {
 
   updateFirstName = (x) => this.setState({firstname:x.target.value})
   updateLastName = (a) => this.setState({lastname:a.target.value})
-  updateSpecialty = (b) => this.setState({specialty:b.target.value})
+  // updateSpecialty = (b) => this.setState({specialty:b.target.value})
   updateZipcode = (c) => this.setState({zipcode:c.target.value})
 
   handleclick = async (e) => {
+    // console.log(this.state.specialty)
     //provide dropdown for specialty and make it lowercase
     const res = await getDoctors(this.state.specialty, this.state.zipcode, this.state.firstname, this.state.lastname);
     //HealthAPI.get("/")
