@@ -65,8 +65,8 @@ class Tracker extends Component{
             <div>
             <Navbar id={this.props.match.params.id}/>
             <Formgroup>
-              <Input name="number" labelname="Enter Number with code" value={this.state.number} onChange={this.handleChange}></Input>
-              <Input name="message" labelname="Enter Message" value={this.state.message} onChange={this.handleChange}></Input>
+              <Input type="text" name="number" labelname="Enter Number with code" value={this.state.number} onChange={this.handleChange}></Input>
+              <Input type="text" name="message" labelname="Enter Message" value={this.state.message} onChange={this.handleChange}></Input>
               <Button onClick={this.saveNumber}>Save Number</Button>
             </Formgroup>
             <Formgroup>

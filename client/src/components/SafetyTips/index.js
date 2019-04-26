@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import HealthAPI from "../../utils/HealthApi";
+// import HealthAPI from "../../utils/HealthApi";
+import Formgroup from "../Form/Formgroup";
 import getDoctors from "../../utils/HealthApi";
 import DoctorCard from "./HealthCard/healthcard";
 import Navbar from "../Navbar";
+import Input from "../Form/Input";
+import Button from "../Form/Button";
 class Health extends Component {
   state= {
     firstname: "",
@@ -23,11 +26,13 @@ class Health extends Component {
         
       <div>
         <Navbar id={this.props.match.params.id}/>
-          <input type="text" placeholder="First Name" value ={this.state.firstname} onChange= {x => this.updateFirstName(x)} />
+        <Formgroup>
+        <Input type="text" name="First Name" labelname="First Name" value= {this.state.firstname} onChange= {x => this.updateFirstName(x)}></Input>
+          {/* <input type="text" placeholder="First Name" value ={this.state.firstname} onChange= {x => this.updateFirstName(x)} /> */}
 
           <br></br>
-          
-          <input type="text" placeholder="Last Name" value={this.state.lastname} onChange= {a => this.updateLastName(a)} />
+          <Input type="text" name="Last Name" labelname="Last Name" value= {this.state.lastname} onChange= {a => this.updateLastName(a)}></Input>
+          {/* <input type="text" placeholder="Last Name" value={this.state.lastname} onChange= {a => this.updateLastName(a)} /> */}
 
           <br></br>
 
@@ -47,13 +52,16 @@ class Health extends Component {
         
           
           <br></br>
-          
-          <input type="text" placeholder="State or Zipcode" value={this.state.zipcode} onChange= {c => this.updateZipcode(c)} />
+          <Input type="text" name="State or Zipcode" labelname="State or Zipcode" value= {this.state.zipcode}  onChange= {c => this.updateZipcode(c)}></Input>
+          {/* <input type="text" placeholder="State or Zipcode" value={this.state.zipcode} onChange= {c => this.updateZipcode(c)} /> */}
 
           <br></br>
-        
-        <button onClick={this.handleclick}>Search</button>
-
+          <Button onClick={this.handleclick}>Search</Button>
+        {/* <button onClick={this.handleclick}>Search</button> */}
+           </Formgroup>
+           <Formgroup>
+             <h1 className="text-center">Results</h1>
+             <hr></hr>
         {this.state.doctors.length > 0 ?  this.state.doctors.map(doctor => <DoctorCard 
           fname={doctor.profile.first_name}
           lname={doctor.profile.last_name}
@@ -69,7 +77,8 @@ class Health extends Component {
           number={doctor.practices.length == 0 ? 
             "NONE" : doctor.practices[0].phones[0].number}
 
-        />) : null}
+        />) : <h3>Search with correct Information</h3>}
+        </Formgroup>
         {/* <table> */}
         
           {/* {this.state.doctors.map(doctor => {
@@ -128,6 +137,7 @@ class Health extends Component {
     
   this.setState({doctors:res.data.data});
   console.log(this.state.doctors);
+  this.setState({firstname:"" , lastname:"" ,  zipcode:""})
 
     
   }
