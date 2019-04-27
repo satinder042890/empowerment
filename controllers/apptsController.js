@@ -39,15 +39,13 @@ module.exports = {
 
     findById: function(req, res) {
         db.User
-          .findById( req.params.id)
+          .findOne({_id:req.params.id}).populate("appointment")
           .then(dbModel => {
-              console.log(dbModel)
-              db.Appointment
-                .findById(dbModel.appointment)
-                .then(data =>res.json(data)
-                )
+              console.log(dbModel.appointment)
+              res.json(dbModel);
+              
             })
-          .catch(err => res.status(422).json(err));
+          .catch(err => res.json(err));
     },
     delete: function(req, res) {
         db.Appointment

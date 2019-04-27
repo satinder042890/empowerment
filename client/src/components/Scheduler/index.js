@@ -43,6 +43,7 @@ export default class Scheduler extends React.Component {
     loadAppts = () => {
       API.getAppts(this.props.match.params.id)
         .then(res => {
+          console.log(res);
           let newAppt = this.state.appointments.slice();
           newAppt.push(res.data);
           this.setState({appointments: newAppt})
