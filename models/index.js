@@ -1,6 +1,6 @@
 module.exports = {
     User: require("./user"),
-    Appointment: require("./appointment"),
+    Appointment: require("./Appointment"),
     Contact: require("./Contact")
   };
   

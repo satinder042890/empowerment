@@ -12,22 +12,40 @@ module.exports = {
     // },
 
     create: function(req, res) {
-        db.Appointment.create(req.body).then(function(dbAppointment) {
-            res.json(dbAppointment);
-        });
+        console.log(req.params.id);
+        db.Appointment
+        .create(req.body)
+        .then(function(userdata) {
+            return db.User.findOneAndUpdate({ _id: req.params.id }, { "$push": { appointment: userdata._id } }, { new: true });
+        })
+        .then(data =>res.json(data))
+        .catch(err =>res.status(422).json(err))
+
+        
     },
     findAll: function(req, res) {
-        db.Appointment
-          .find(req.query)
+        db.User
+          .find({_id: req.params.id})
           .sort({ date: -1 })
-          .then(dbAppointment => res.json(dbAppointment))
-          .catch(err => res.status(422).json(err));
+          .then(dbModel => {
+            console.log(dbModel)
+            db.Appointment
+              .findById(dbModel.appointment)
+              .then(data =>res.json(data)
+              )
+          })
+        .catch(err => res.status(422).json(err));
     },
+
     findById: function(req, res) {
-        db.Appointment
-          .findById({_userId: req.params.id})
-          .then(data => res.json(data))
-          .catch(err => res.status(422).json(err));
+        db.User
+          .findOne({_id:req.params.id}).populate("appointment")
+          .then(dbModel => {
+              console.log(dbModel.appointment)
+              res.json(dbModel);
+              
+            })
+          .catch(err => res.json(err));
     },
     delete: function(req, res) {
         db.Appointment
